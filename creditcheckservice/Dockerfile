@@ -8,9 +8,10 @@ COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN splk-py-trace-bootstrap
 
 # Copy main app
 COPY main.py .
-
+ENTRYPOINT [ "splunk-py-trace" ]
 # Set the entrypoint command to run the application
 CMD ["python3", "main.py"]
