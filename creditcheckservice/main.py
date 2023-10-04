@@ -47,4 +47,4 @@ def getCreditCategoryFromScore(score):
     return creditScoreCategory
 
 if __name__ == '__main__':
-    serve(app)
+    serve(app, port=8888)
