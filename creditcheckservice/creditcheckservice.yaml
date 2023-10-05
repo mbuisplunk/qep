@@ -30,7 +30,7 @@ spec:
         - name: OTEL_SERVICE_NAME
           value: "creditcheckservice:8888"
         - name: OTEL_RESOURCE_ATTRIBUTES
-          value: "deployment.environment=MB QEP"
+          value: "deployment.environment=mb-qep"
         resources:
           requests:
             cpu: 110m
