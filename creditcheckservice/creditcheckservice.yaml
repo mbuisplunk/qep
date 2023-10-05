@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: creditcheckservice:8888 
+  name: creditcheckservice 
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
       nodeSelector:
       terminationGracePeriodSeconds: 5
       containers:
-      - name: creditcheckservice:8888
+      - name: creditcheckservice
         image: docker.io/library/credit-check-service:latest
         imagePullPolicy: Never
         ports:
@@ -28,7 +28,7 @@ spec:
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: "http://$(SPLUNK_OTEL_AGENT):4317"
         - name: OTEL_SERVICE_NAME
-          value: "creditcheckservice"
+          value: "creditcheckservice:8888"
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: "deployment.environment=MB QEP"
         resources:
