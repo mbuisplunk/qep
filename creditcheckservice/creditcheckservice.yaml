@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: creditcheckservice 
+  name: creditcheckservice:8888 
 spec:
   selector:
     matchLabels:
@@ -15,9 +15,11 @@ spec:
       nodeSelector:
       terminationGracePeriodSeconds: 5
       containers:
-      - name: creditcheckservice
+      - name: creditcheckservice:8888
         image: docker.io/library/credit-check-service:latest
         imagePullPolicy: Never
+        ports:
+        - containerPort: 8888
         env:
         - name: SPLUNK_OTEL_AGENT
           valueFrom:
@@ -47,3 +49,5 @@ spec:
     app: creditcheckservice
   ports:
   - protocol: TCP
+    port: 8888
+    targetPort: 8888
