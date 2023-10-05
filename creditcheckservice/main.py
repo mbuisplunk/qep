@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, request
 from waitress import serve
+from opentelemetry import trace
 
 app = Flask(__name__)
 
@@ -44,6 +45,8 @@ def getCreditCategoryFromScore(score):
             creditScoreCategory = 'poor'
         case _:
             creditScoreCategory = 'impossible'
+    customizedSpan = trace.get_current_span()
+    customizedSpan.set_attribute("creditScoreCategory", creditScoreCategory);
     return creditScoreCategory
 
 if __name__ == '__main__':
